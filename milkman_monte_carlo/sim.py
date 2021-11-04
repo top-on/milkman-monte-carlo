@@ -2,15 +2,17 @@
 
 from typing import List, Tuple
 
-CALF_N = 3
+from numpy.random import normal
 
-MILK_MINUTES = 5
+CALF_N = 5
+
+MILK_MINUTES = 10
 MILK_MINUTES_SD = 2
 
-WALK_MINUTES = 3
-MILK_MINUTES_SD = 2
+WALK_MINUTES = 5
+WALK_MINUTES_SD = 2
 
-CALF_MINUTES = 2
+CALF_MINUTES = 5
 CALF_MINUTES_SD = 2
 
 
@@ -22,20 +24,23 @@ def simulate() -> Tuple[float, float, List[float]]:
 
     # milk the cow
     minutes_plan += MILK_MINUTES
-    minutes_real += MILK_MINUTES
+    minutes_real += max(0, MILK_MINUTES + normal(loc=0.0, scale=MILK_MINUTES_SD))
 
     minutes_delay = []  # delays when arriving at cows
     for i in range(CALF_N):
         # walk to calf
         minutes_plan += WALK_MINUTES
-        minutes_real += WALK_MINUTES
+        minutes_real += max(0, WALK_MINUTES + normal(loc=0.0, scale=WALK_MINUTES_SD))
         minutes_delay.append(minutes_real - minutes_plan)
 
         # feed a calf
         minutes_plan += CALF_MINUTES
-        minutes_real += CALF_MINUTES
+        minutes_real += max(0, CALF_MINUTES + normal(loc=0.0, scale=CALF_MINUTES_SD))
 
     return minutes_plan, minutes_real, minutes_delay
+
+
+normal()
 
 
 if __name__ == "__main__":
