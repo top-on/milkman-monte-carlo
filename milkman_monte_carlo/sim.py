@@ -50,5 +50,5 @@ if __name__ == "__main__":
     )
     print(f"{minutes_plan = }; {minutes_real = }; {minutes_delay = }")
 
-    minutes_postive_delay = [max(0, delay) for delay in minutes_delay]
-    print(f"Sum of delayed minutes: {sum(minutes_postive_delay):.2f}")
+    minutes_positive_delay = [max(0, delay) for delay in minutes_delay]
+    print(f"Sum of delayed minutes: {sum(minutes_positive_delay):.2f}")
