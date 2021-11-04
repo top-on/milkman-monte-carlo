@@ -38,6 +38,7 @@ def simulate(
 
 
 if __name__ == "__main__":
+
     minutes_plan, minutes_real, minutes_delay = simulate(
         calf_n=5,
         milk_minutes=10.0,
@@ -48,3 +49,6 @@ if __name__ == "__main__":
         calf_minutes_sd=2.0,
     )
     print(f"{minutes_plan = }; {minutes_real = }; {minutes_delay = }")
+
+    minutes_postive_delay = [max(0, delay) for delay in minutes_delay]
+    print(f"Sum of delayed minutes: {sum(minutes_postive_delay):.2f}")
